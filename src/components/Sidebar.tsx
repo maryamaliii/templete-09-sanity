@@ -20,7 +20,7 @@ const Sidebar: React.FC = () => {
     { name: "Burger Food", count: 46, image: "/burger-food.jpg" },
     { name: "Pizza", count: 16, image: "/pizza.jpg" },
     { name: "Fresh Fruits", count: 36, image: "/fresh-fruit.jpg" },
-    { name: "Vegetables", count: 16, image: "/aboutus3.png" },
+    { name: "Vegetables", count: 16, image: "/aboutUS3.png" },
   ];
   const tags = [
     'Sandwich', 'Tikka', 'Bbq', 'Restaurant', 'Chicken Sharma',
@@ -31,9 +31,9 @@ const Sidebar: React.FC = () => {
   const galleryImages = [
     { src: "/pizza.jpg", alt: "Delicious pizza with toppings" },
     { src: "/menu6.png", alt: "Gourmet dish presentation" },
-    { src: "/aboutUs1.png", alt: "Grilled salmon with vegetables" },
+    { src: "/aboutUS1.png", alt: "Grilled salmon with vegetables" },
     { src: "/chicken-fry.jpg", alt: "BBQ platter with sides" },
-    { src: "/aboutUs2.png", alt: "Appetizer plate" },
+    { src: "/aboutUS2.png", alt: "Appetizer plate" },
     { src: "/cupcake.png", alt: "French toast with fruits" },
   ];
 
