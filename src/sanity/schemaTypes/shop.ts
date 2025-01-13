@@ -19,6 +19,7 @@ export default defineType({
       name: "oldPrice",
       title: "Old Price",
       type: "number",
+      description: 'Toogle to indicate if the product is in stock .'
     }),
     defineField({
       name: "description",

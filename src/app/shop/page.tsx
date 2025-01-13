@@ -17,7 +17,8 @@ interface Shop {
 }
 
 async function fetchShops() {
-  const query = `*[_type == "shop"]{
+  const query = `*[_type == "shop"]
+  {
     itemName,
     price,
     oldPrice,

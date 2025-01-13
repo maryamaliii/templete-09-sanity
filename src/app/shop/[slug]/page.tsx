@@ -17,7 +17,8 @@ interface ShopDetails {
 }
 
 async function fetchProduct(slug: string) {
-  const query = `*[_type == "shop" && slug.current == $slug][0]{
+  const query = `*[_type == "shop" && slug.current == $slug][0]
+  {
     itemName,
     price,
     description,
@@ -99,6 +100,7 @@ export default async function Page({
           id: shop.slug.current,
           name: shop.itemName,
           price: shop.price,
+          image:shop.imageUrl
         }}
       />
           <div className="flex items-center gap-6">

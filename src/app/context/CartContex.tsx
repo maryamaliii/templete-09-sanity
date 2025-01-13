@@ -1,12 +1,13 @@
 "use client";
 
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, { createContext, useState, useContext, ReactNode, useEffect } from "react";
 
 interface CartItem {
   id: string;
   name: string;
   price: number;
   quantity: number;
+  image: string; // Add image URL to the CartItem interface
 }
 
 interface CartContextType {
@@ -19,7 +20,21 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  // Initialize cart state with an empty array (to avoid hydration mismatch)
   const [cart, setCart] = useState<CartItem[]>([]);
+
+  // Load cart from local storage after component mounts (client-side only)
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
+  }, []);
+
+  // Save cart to local storage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const addToCart = (item: CartItem) => {
     const existingItem = cart.find((product) => product.id === item.id);
