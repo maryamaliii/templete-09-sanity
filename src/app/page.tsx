@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#0D0D0D]">
       {/* Hero Section */}
-      <div className="relative min-h-screen w-full">
+      <div className="relative min-h-screen w-full pt-[10vh]">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image 
