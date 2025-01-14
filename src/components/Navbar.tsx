@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
             <FaShoppingCart className="ml-4 text-white cursor-pointer hover:text-yellow-500" />
             {/* Cart Item Count Badge */}
             {cart.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                 {cart.length}
               </span>
             )}

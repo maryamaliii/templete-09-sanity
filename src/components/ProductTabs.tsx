@@ -13,7 +13,7 @@ interface TabProps {
 const Tab = ({ isActive, label, count, onClick }: TabProps) => (
   <button
     onClick={onClick}
-    className={`px-8 py-4 font-medium transition-colors ${
+    className={`px-3 py-3 sm:px-8 sm:py-4 font-medium transition-colors ${
       isActive 
         ? 'bg-[#FF9F0D] text-white' 
         : 'bg-white text-gray-600 hover:bg-gray-50'

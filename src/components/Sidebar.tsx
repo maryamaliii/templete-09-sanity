@@ -152,6 +152,8 @@ const Sidebar: React.FC = () => {
               <Image
                 src={image.src}
                 alt={image.alt}
+                width={150}
+                height={150}
                 className="object-cover hover:scale-110 transition-transform duration-300"
               />
             </div>

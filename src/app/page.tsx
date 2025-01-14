@@ -38,7 +38,7 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative z-10 h-full container lg:left-10 mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="absolute left-0 h-full hidden md:block">
+          <div className="absolute left-0 h-full  hidden md:block">
             <Image 
               src="/herosideline.png" 
               alt="Decorative line" 

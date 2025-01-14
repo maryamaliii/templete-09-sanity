@@ -74,11 +74,11 @@ export default function About() {
               velit in consequat.
             </p>
             <div className="flex justify-center md:justify-start  space-x-4">
-              <button className="inline-flex text-white bg-[#FF9F0D] border-0 py-3 px-6 focus:outline-none hover:bg-[#f59000] rounded text-lg transition-colors">
+              <button className="inline-flex text-white bg-[#FF9F0D] py-2 px-4 sm:py-3 sm:px-6 focus:outline-none hover:bg-[#f59000] rounded text-lg transition-colors">
                 Show More
               </button>
-              <button className="inline-flex items-center text-black border-0 py-3 px-6 focus:outline-none rounded text-lg transition-colors">
-                <IoPlayOutline className="mr-2 text-white bg-orange-500 rounded-full text-2xl" />
+              <button className="inline-flex items-center text-black border-0 py-2 px-4 sm:py-3 sm:px-6 focus:outline-none rounded text-lg transition-colors">
+                <IoPlayOutline className="mr-2 text-white bg-[#FF9F0D]  rounded-full text-2xl" />
                 Watch video
               </button>
             </div>

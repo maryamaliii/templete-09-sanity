@@ -67,7 +67,7 @@ export default async function Page({
             alt={shop.itemName}
             width={491}
             height={596}
-            className="w-[491px] h-[596px] object-fill rounded-md shadow-lg"
+            className="sm:w-[491px] sm:h-[596px] w-[300px] h-[430px] object-fill rounded-md shadow-lg"
           />
         </div>
 

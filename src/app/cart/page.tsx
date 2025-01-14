@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCart } from "../context/CartContex";
 import Link from "next/link";
+import PageHeader from "@/components/PageHeader";
 
 const CartPage = () => {
   const { cart, updateQuantity, removeFromCart } = useCart();
@@ -18,6 +19,8 @@ const CartPage = () => {
     .toFixed(2);
 
   return (
+    <div>
+      <PageHeader title='Add To Cart' currentPage='Add To Cart' />
     <div className="p-4 sm:p-8">
       <h1 className="text-2xl sm:text-3xl font-bold mb-6">Cart</h1>
       {cart.length === 0 ? (
@@ -92,6 +95,7 @@ const CartPage = () => {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 };

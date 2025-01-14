@@ -32,8 +32,8 @@ const ChefGrid = () => {
             key={index}
             className={`relative overflow-hidden rounded-lg shadow-lg bg-white flex flex-col transition-transform transform hover:scale-105 hover:shadow-xl ${
               index === 6
-                ? "border-4 border-purple-600" // Complete purple border for the 7th box
-                : "border-4 border-transparent hover:border-purple-600" // Hover effect for other boxes
+                ? "border-4 border-gray-200" // Complete purple border for the 7th box
+                : "border-4 border-transparent hover:border-gray-200" // Hover effect for other boxes
             }`}
           >
             {/* Chef Image */}

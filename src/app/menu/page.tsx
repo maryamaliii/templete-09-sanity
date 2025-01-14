@@ -19,7 +19,7 @@ export default function Menu() {
 
 
         {/* Starter Menu */}
-        <section className="w-full max-w-4xl my-12 px-4 flex flex-col md:flex-row gap-8 space-x-10 items-center">
+        <section className="w-full max-w-4xl my-12 px-4 flex flex-col md:flex-row gap-8 space-x-5 items-center">
           <Image
             src="/starter.png"
             alt="Starter Menu"
@@ -67,7 +67,7 @@ export default function Menu() {
         </section>
 
         {/* Main Course */}
-        <section className="w-full max-w-4xl my-12 px-4 flex flex-col md:flex-row gap-8 space-x-10 items-center">
+        <section className="w-full max-w-4xl my-12 px-5 flex flex-col md:flex-row gap-8 space-x-3 sm:space-x-10 items-center">
           <div>
             <h2 className="text-2xl font-semibold text-gray-700 border-b border-gray-300 pb-2 mb-4">Main Course</h2>
             <ul className="text-gray-600 space-y-4">
@@ -117,7 +117,7 @@ export default function Menu() {
         <Statistics />
 
         {/* Dessert */}
-        <section className="w-full max-w-4xl my-12 px-4 flex flex-col md:flex-row gap-8 space-x-10 items-center">
+        <section className="w-full max-w-4xl my-12 px-4 flex flex-col md:flex-row gap-8 space-x-5 items-center">
           <Image
             src="/cupcake.png"
             alt="Dessert"
@@ -165,7 +165,7 @@ export default function Menu() {
         </section>
 
         {/* Drinks */}
-        <section className="w-full max-w-4xl my-12 px-4 flex flex-col md:flex-row gap-8 space-x-10 items-center">
+        <section className="w-full max-w-4xl my-12 px-4 flex flex-col md:flex-row gap-8 space-x-3 sm:space-x-10 items-center">
           <div>
             <h2 className="text-2xl font-semibold text-gray-700 border-b border-gray-300 pb-2 mb-4">Drinks</h2>
             <ul className="text-gray-600 space-y-4">

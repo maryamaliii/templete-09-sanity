@@ -4,6 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 import { Address, Rate, trackingObjType } from "@/helper/type";
 import { cartProductsWhichCanBeShipped } from "@/helper/data";
+import PageHeader from "@/components/PageHeader";
 
 
 // Helper function to safely access address fields
@@ -102,7 +103,7 @@ const ShippingRatesPage = () => {
 
   return (
     <div>
-      
+      <PageHeader title='Checkout' currentPage='Checkout' />
       <div className="min-h-screen bg-[#FAFAFA] py-12 px-6 wrapper">
         <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-lg p-8">
           <h1 className="text-4xl font-bold text-[#252B42] text-center mb-8">
