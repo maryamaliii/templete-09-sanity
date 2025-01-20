@@ -1,65 +1,88 @@
-import React from "react";
 import PageHeader from "@/components/PageHeader";
-import Image from "next/image"
+import { client } from "@/sanity/lib/client";
+import Image from "next/image";
 
-const chefs = [
-  { name: "Tahmina Rumi", role: "Chef", image: "/ourchef1.png" },
-  { name: "Jorina Begum", role: "Chef", image: "/ourchef2.png" },
-  { name: "M. Mohammad", role: "Chef", image: "/ourchef3.png" },
-  { name: "Munna Kathy", role: "Chef", image: "/ourchef4.png" },
-  { name: "Tahmina Rumi", role: "Cook", image: "/ourchef5.png" },
-  { name: "Bisnu Devgon", role: "Chef", image: "/ourchef6.png" },
-  { name: "Motin Molladst", role: "Chef", image: "/ourchef7.png" },
-  { name: "William Rumi", role: "Chef", image: "/ourchef8.png" },
-  { name: "Kets William Roy", role: "Chef", image: "/ourchef9.png" },
-  { name: "Mahmud Kholil", role: "Chef", image: "/ourchef10.png" },
-  { name: "Ataur Rahman", role: "Chef", image: "/ourchef11.png" },
-  { name: "Monalisa Holly", role: "Chef", image: "/ourchef12.png" },
-];
+interface Chef {
+  _id: string;
+  name: string;
+  position: string;
+  experience: number;
+  specialty: string;
+  imageUrl: string;
+  description: string;
+  available: boolean;
+}
 
-const ChefGrid = () => {
+export default async function FetchChef() {
+  const query = `*[_type == "chef"] {
+    _id,
+    name,
+    position,
+    experience,
+    specialty,
+    "imageUrl": image.asset->url,
+    description,
+    available
+  }`;
+
+  const chefs: Chef[] = await client.fetch(query);
+
   return (
-    <div>
-      <PageHeader
-       title="Our Chef"
-       currentPage="chef"
-       />
-    <div className="p-6 mt-20 w-[80vw] mx-auto"> {/* Adding mt-20 for margin top */}
-      {/* Grid with responsive columns */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
-        {chefs.map((chef, index) => (
-          <div
-            key={index}
-            className={`relative overflow-hidden rounded-lg shadow-lg bg-white flex flex-col transition-transform transform hover:scale-105 hover:shadow-xl ${
-              index === 6
-                ? "border-4 border-gray-200" // Complete purple border for the 7th box
-                : "border-4 border-transparent hover:border-gray-200" // Hover effect for other boxes
-            }`}
-          >
-            {/* Chef Image */}
-            
-            
-            <div className="flex-1">
-              <Image
-                src={chef.image}
-                alt={chef.name}
-                width={300}
-                height={400}
-                className="w-full h-full object-cover rounded-t-lg"
-              />
-            </div>
+    <div className="bg-white">
+      <PageHeader title="Our Chef" currentPage="chef" />
+      <div className="p-6 mt-20 w-[80vw] mx-auto">
+        {/* Grid layout for chefs */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {chefs.map((chef) => (
+            <div
+              key={chef._id}
+              className="relative overflow-hidden rounded-lg shadow-lg bg-white flex flex-col transition-transform transform hover:scale-105 hover:shadow-xl"
+            >
+              {/* Chef Image with Position Overlay */}
+              <div className="flex-1 relative">
+                <Image
+                  src={chef.imageUrl}
+                  alt={chef.name}
+                  width={300}
+                  height={400}
+                  className="w-full h-full object-cover rounded-t-lg"
+                />
+                {/* Position Text (Top-Left Corner) */}
+                <div className="absolute top-2 left-2 bg-orange-500 bg-opacity-75 text-white px-3 py-1 rounded-md text-sm font-medium">
+                  {chef.position}
+                </div>
+              </div>
 
-            {/* Static Information Section Below Image */}
-            <div className="p-4 text-center">
-              <h3 className="text-gray-800 font-bold text-lg">{chef.name}</h3>
-              <p className="text-gray-600">{chef.role}</p>
+              {/* Chef Details */}
+              <div className="p-4 text-center">
+                {/* Name and Description */}
+                <h3 className="text-gray-800 font-bold text-lg">{chef.name}</h3>
+                <p className="text-gray-600 mt-2">{chef.description}</p>
+
+                {/* Additional Details */}
+                <div className="mt-4 space-y-2">
+                  <p className="text-gray-700">
+                    <span className="font-semibold">Specialty:</span> {chef.specialty}
+                  </p>
+                  <p className="text-gray-700">
+                    <span className="font-semibold">Experience:</span> {chef.experience} years
+                  </p>
+                  <p className="text-gray-700">
+                    <span className="font-semibold">Status:</span>{" "}
+                    <span
+                      className={`${
+                        chef.available ? "text-green-600" : "text-red-600"
+                      }`}
+                    >
+                      {chef.available ? "Available" : "Not Available"}
+                    </span>
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
-    </div>
   );
-};
-
-export default ChefGrid;
+}

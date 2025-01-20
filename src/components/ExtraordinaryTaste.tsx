@@ -29,6 +29,7 @@ const ExtraordinaryTaste = () => {
                 src="/choose1.png"
                 alt="picture"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="rounded object-cover"
               />
             </div>
@@ -37,6 +38,7 @@ const ExtraordinaryTaste = () => {
                 src="/choose2.png"
                 alt="Food image"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="rounded object-cover"
               />
             </div>
@@ -47,6 +49,7 @@ const ExtraordinaryTaste = () => {
                 src="/choose3.png"
                 alt="Food image"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="rounded object-cover"
               />
             </div>
@@ -55,6 +58,7 @@ const ExtraordinaryTaste = () => {
                 src="/maincourse.png"
                 alt="Food image"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="rounded object-cover"
               />
             </div>
@@ -64,6 +68,7 @@ const ExtraordinaryTaste = () => {
                 src="/choose5.png"
                 alt="Food image"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="rounded object-cover"
               />
             </div>
@@ -72,6 +77,7 @@ const ExtraordinaryTaste = () => {
                 src="/choose6.png"
                 alt="Food image"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="rounded object-cover"
               />
             </div>

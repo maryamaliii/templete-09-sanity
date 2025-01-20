@@ -1,11 +1,7 @@
-// src/components/sidebar/Sidebar.tsx
-import React from "react";
 import Link from "next/link";
 import { FaTwitter, FaYoutube, FaPinterest, FaInstagram, FaFacebook } from "react-icons/fa";
-import { CiSearch } from "react-icons/ci";
 import Image from "next/image";
 
-// Sidebar Component
 const Sidebar: React.FC = () => {
   // Data for posts, menu items, gallery images, and social links
   const posts = [
@@ -26,7 +22,6 @@ const Sidebar: React.FC = () => {
     'Sandwich', 'Tikka', 'Bbq', 'Restaurant', 'Chicken Sharma',
     'Health', 'Fastfood', 'Food', 'Pizza', 'Burger', 'Chicken'
   ];
-  
 
   const galleryImages = [
     { src: "/pizza.jpg", alt: "Delicious pizza with toppings" },
@@ -47,20 +42,6 @@ const Sidebar: React.FC = () => {
 
   return (
     <aside className="space-y-8">
-      {/* Search */}
-              <div className="mb-8">
-                <div className="flex">
-                  <input
-                    type="text"
-                    placeholder="Search Product"
-                    className="flex-1 border p-2 rounded-l focus:outline-none"
-                  />
-                  <button className="bg-orange-500 text-white px-4 rounded-r">
-                  <CiSearch />
-                  </button>
-                </div>
-              </div>
-      
       {/* Profile Card */}
       <div className="bg-white text-black text-center p-6 rounded-lg w-80 mx-auto shadow-sm">
         <Image
@@ -68,7 +49,7 @@ const Sidebar: React.FC = () => {
           alt="Profile"
           width={96}
           height={96}
-          className="rounded-full mx-auto object-cover"
+          className=" rounded-full mx-auto object-cover"
         />
         <h2 className="mt-4 text-xl font-semibold">Prince Miyako</h2>
         <p className="text-gray-400">Blogger/Photographer</p>
@@ -127,21 +108,21 @@ const Sidebar: React.FC = () => {
         ))}
       </div>
 
-      {/*popular Tags*/}
+      {/* Popular Tags */}
       <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
-      <h2 className="text-2xl font-semibold mb-4">Popular Tags</h2>
-      <div className="flex flex-wrap gap-4">
-        {tags.map((tag) => (
-          <Link
-            href={`/blog/tag/${tag.toLowerCase()}`}
-            key={tag}
-            className="px-4 py-2 border space- border-gray-200 rounded-lg text-gray-700 hover:bg-primary hover:text-white transition-colors"
-          >
-            {tag}
-          </Link>
-        ))}
+        <h2 className="text-2xl font-semibold mb-4">Popular Tags</h2>
+        <div className="flex flex-wrap gap-4">
+          {tags.map((tag) => (
+            <Link
+              href={`/blog/tag/${tag.toLowerCase()}`}
+              key={tag}
+              className="px-4 py-2 border space- border-gray-200 rounded-lg text-gray-700 hover:bg-primary hover:text-gray-950 transition-colors"
+            >
+              {tag}
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
 
       {/* Photo Gallery */}
       <div className="bg-white p-6 rounded-lg shadow-sm mb-6">

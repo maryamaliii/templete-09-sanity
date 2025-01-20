@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Smooth transition for sidebar */
+.transform {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Ensure the sidebar doesn't overflow on small screens */
+  @media (max-width: 1023px) {
+    .fixed {
+      overflow-y: auto;
+    }
+  }

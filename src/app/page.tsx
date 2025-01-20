@@ -29,7 +29,9 @@ export default function Home() {
             src="/herobg.png" 
             alt="Hero background" 
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover"
+            loading="eager"
             priority
           />
           {/* Dark overlay */}

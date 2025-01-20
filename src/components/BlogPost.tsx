@@ -56,6 +56,7 @@ const BlogPost = () => {
                   src={post.image}
                   alt={post.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>

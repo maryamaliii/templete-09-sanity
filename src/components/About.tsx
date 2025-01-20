@@ -73,6 +73,7 @@ const About = () => {
                 src="/aboutUS1.png"
                 alt="Main food image"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="rounded-md object-cover"
               />
             </div>
@@ -82,6 +83,7 @@ const About = () => {
                   src="/aboutUS2.png"
                   alt="Food image 1"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="rounded-md object-cover"
                 />
               </div>
@@ -90,7 +92,9 @@ const About = () => {
                   src="/aboutUS3.png"
                   alt="Food image 2"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="rounded-md object-cover"
+                  loading="eager"
                 />
               </div>
             </div>

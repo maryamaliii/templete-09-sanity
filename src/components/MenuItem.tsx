@@ -17,6 +17,7 @@ const MenuItem = ({ image, title, description, price }: MenuItemProps) => {
           src={image}
           alt={title}
           fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="rounded-md object-cover"
         />
       </div>

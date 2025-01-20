@@ -1,4 +1,3 @@
-// components/CommentSection.tsx
 "use client";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
@@ -102,6 +101,8 @@ const CommentSection: React.FC = () => {
             <Image
               src="/commentprofile.png"
               alt="Profile"
+              width={80}
+              height={80}
               className="w-12 h-12 rounded-full object-cover"
             />
             <div>

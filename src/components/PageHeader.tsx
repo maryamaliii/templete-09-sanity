@@ -17,6 +17,7 @@ export default function PageHeader({ title, currentPage  }: PageHeaderProps) {
           src={'/pageheader.png'}
           alt={`${currentPage} Header`}
           fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover"
           priority
         />

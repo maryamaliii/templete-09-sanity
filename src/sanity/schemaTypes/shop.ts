@@ -19,7 +19,6 @@ export default defineType({
       name: "oldPrice",
       title: "Old Price",
       type: "number",
-      description: 'Toogle to indicate if the product is in stock .'
     }),
     defineField({
       name: "description",
@@ -51,6 +50,7 @@ export default defineType({
         hotspot: true,
       },
     }),
+    
     defineField({
       name: "slug",
       title: "Slug",
@@ -60,5 +60,25 @@ export default defineType({
         maxLength: 200,
       },
     }),
+    defineField({
+      name: "category",
+      title: "Category",
+      type: "reference", // Reference type use karein
+      to: [{ type: "category" }], // Category schema se link karein
+      validation: (Rule) => Rule.required(), // Category zaroori hai
+    }),
+    defineField({
+      name: "tags",
+      title: "Tags",
+      type: "array",
+      of: [{ type: "string" }],
+      options: {
+        list: [
+          { title: "Sale", value: "sale" },
+          { title: "20% OFF", value: "20% off" },
+        ],
+      },
+    })
   ],
-});
+})
+
