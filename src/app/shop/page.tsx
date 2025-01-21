@@ -5,7 +5,6 @@ import Link from "next/link";
 import { CiSearch } from "react-icons/ci";
 import PageHeader from "@/components/PageHeader";
 import Image from "next/image";
-import CategoryList from "@/components/CategoryList";
 
 interface Shop {
   itemName: string;
@@ -218,12 +217,7 @@ export default function ShopPage() {
               </button>
             </div>
           </div>
-
-          {/* Categories */}
-          <div className="mb-8">
-            <CategoryList />
-          </div>
-
+          
           {/* Featured Product */}
           <div
             className="w-full h-[286px] p-6 rounded-lg mb-8"
