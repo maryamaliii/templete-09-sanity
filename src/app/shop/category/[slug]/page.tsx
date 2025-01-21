@@ -3,7 +3,6 @@ import { groq } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 
-// Define Product Type
 interface Product {
   _id: string;
   itemName: string;
@@ -23,15 +22,15 @@ interface Product {
   };
 }
 
-export default async function CategoryPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>; // params is a Promise
-}) {
-  const { slug } = await params; // Await params before destructuring
+interface CategoryPageProps {
+  params: Promise<{ slug: string }>; 
+}
+
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const slug = (await params).slug; 
 
   try {
-    // Fetch products for the category
+    
     const productsQuery = groq`
       *[_type == "shop" && category->slug.current == $slug] {
         _id,
@@ -101,7 +100,7 @@ export default async function CategoryPage({
   }
 }
 
-// Generate static paths
+// Static paths generate karein
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const categoriesQuery = groq`
     *[_type == "category"] {
