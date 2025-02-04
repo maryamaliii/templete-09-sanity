@@ -82,7 +82,7 @@ const CartPage = () => {
           </div>
           {/* Checkout Button */}
           <div className="mt-6 text-right">
-            <Link href="/generate-tracking">
+            <Link href="/checkout">
               <button
                 disabled={cart.length === 0}
                 className={`px-4 py-2 sm:px-6 sm:py-2 bg-orange-500 text-white rounded hover:bg-orange-600 transition ${

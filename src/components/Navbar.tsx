@@ -3,6 +3,12 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { FaSearch, FaShoppingBag, FaBars, FaTimes, FaChevronDown, FaShoppingCart, FaUser } from 'react-icons/fa';
 import { useCart } from '@/app/context/CartContex';
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/nextjs";
 
 interface DropdownProps {
   items: { label: string; href: string }[];
@@ -64,8 +70,9 @@ const Navbar: React.FC = () => {
           Food<span className="text-white">tuck</span>
         </span>
         <div className="md:hidden flex gap-5">
-          <Link href="/cart" className="relative hover:text-yellow-500 text-white">
-            <FaShoppingCart className="ml-4 text-white cursor-pointer hover:text-yellow-500" />
+          {/* Cart Icon for Mobile */}
+          <Link href="/cart" className="relative hover:text-yellow-500 mt-2 text-white">
+            <FaShoppingCart className="text-white cursor-pointer hover:text-yellow-500" />
             {/* Cart Item Count Badge */}
             {cart.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -73,6 +80,27 @@ const Navbar: React.FC = () => {
               </span>
             )}
           </Link>
+
+          {/* Shopping Bag Icon for Mobile */}
+          <Link href="/shop" className='hover:text-yellow-500 mt-2 text-white'>
+            <FaShoppingBag className="text-white cursor-pointer hover:text-yellow-500" />
+          </Link>
+
+          {/* User Icon for Mobile */}
+          <SignedOut>
+            <SignInButton>
+              <button className="text-white cursor-pointer mt-2 hover:text-yellow-500">
+                <FaUser />
+              </button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <div className="text-white cursor-pointer hover:text-yellow-500">
+              <UserButton afterSignOutUrl="/" />
+            </div>
+          </SignedIn>
+
+          {/* Hamburger Menu Icon */}
           <button onClick={toggleMenu} aria-label="Toggle menu">
             {isOpen ? <FaTimes className="text-white" /> : <FaBars className="text-white" />}
           </button>
@@ -128,6 +156,7 @@ const Navbar: React.FC = () => {
             />
             <FaSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-yellow-500" />
           </div>
+          {/* Cart Icon for Desktop */}
           <Link href="/cart" className="relative hover:text-yellow-500 text-white">
             <FaShoppingCart className="ml-4 text-white cursor-pointer hover:text-yellow-500" />
             {/* Cart Item Count Badge */}
@@ -137,12 +166,26 @@ const Navbar: React.FC = () => {
               </span>
             )}
           </Link>
-          <Link href="/signin" className='hover:text-yellow-500 text-white'>
-            <FaUser className="ml-4 text-white cursor-pointer hover:text-yellow-500" />
-          </Link>
+
+
+          {/* Shopping Bag Icon for Desktop */}
           <Link href="/shop" className='hover:text-yellow-500 text-white'>
             <FaShoppingBag className="ml-4 text-white cursor-pointer hover:text-yellow-500" />
           </Link>
+
+          {/* User Icon for Desktop */}
+          <SignedOut>
+            <SignInButton>
+              <button className="ml-4 text-white cursor-pointer hover:text-yellow-500">
+                <FaUser />
+              </button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <div className="ml-4">
+              <UserButton afterSignOutUrl="/" />
+            </div>
+          </SignedIn>
         </div>
       </div>
 
