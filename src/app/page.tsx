@@ -12,8 +12,8 @@ import Testimonials from "@/components/Testimonials";
 import BlogPost from "@/components/BlogPost";
 
 const greatVibes = Great_Vibes({
-  weight: '400', // Default weight
-  subsets: ['latin'], // Choose character set
+  weight: '400', 
+  subsets: ['latin'],
 });
 
 

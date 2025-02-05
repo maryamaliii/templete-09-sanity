@@ -1,17 +1,16 @@
 "use client";
-import { loadStripe } from '@stripe/stripe-js';
-import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js';
-import { useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from 'next/navigation';
+import { loadStripe } from "@stripe/stripe-js";
+import { CardElement, Elements, useElements, useStripe } from "@stripe/react-stripe-js";
+import { useState } from "react";
+import { toast, } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "");
 
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
@@ -19,6 +18,7 @@ const CheckoutForm = () => {
     event.preventDefault();
 
     if (!stripe || !elements) {
+      toast.error("Stripe is not loaded. Please try again.");
       return;
     }
 
@@ -26,8 +26,10 @@ const CheckoutForm = () => {
 
     try {
       // Create Payment Intent
-      const response = await fetch('/api/create-payment-intent', {
-        method: 'POST',
+      const response = await fetch("/api/create-payment-intent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: 1000 }), // $10.00
       });
 
       if (!response.ok) {
@@ -36,34 +38,30 @@ const CheckoutForm = () => {
 
       const { clientSecret } = await response.json();
 
+      // Get card details
+      const cardElement = elements.getElement(CardElement);
+      if (!cardElement) {
+        toast.error("Card details not found. Please try again.");
+        setLoading(false);
+        return;
+      }
+
       // Confirm Payment
       const paymentResult = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement)!,
-        },
+        payment_method: { card: cardElement },
       });
 
       if (paymentResult.error) {
-        setError(paymentResult.error.message || 'Payment failed');
-        toast.error(paymentResult.error.message || 'Payment failed');
+        toast.error(paymentResult.error.message || "Payment failed");
       } else {
-        setError(null);
-        toast.success(
-          <div>
-            <h2 className="font-bold text-lg">🎉 Payment Successful!</h2>
-            <p className="text-sm">Thank you for your purchase. Your order is being processed.</p>
-            <p className="text-sm mt-2">Food tuck: Hungry for more? Check out our exclusive deals on desserts and combos!</p>
-          </div>
-        );
-        router.push('/payment-success');
+        toast.success("🎉 Payment Successful! Your order is being processed.");
+        router.push("/payment-success");
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
-        setError(error.message);
         toast.error(error.message);
       } else {
-        setError('An unknown error occurred during payment.');
-        toast.error('An unknown error occurred during payment.');
+        toast.error("An unknown error occurred during payment.");
       }
     } finally {
       setLoading(false);
@@ -79,64 +77,29 @@ const CheckoutForm = () => {
         <CardElement
           options={{
             style: {
-              base: {
-                fontSize: '16px',
-                color: '#424770',
-                '::placeholder': { color: '#aab7c4' },
-              },
-              invalid: { color: '#9e2146' },
+              base: { fontSize: "16px", color: "#424770", "::placeholder": { color: "#aab7c4" } },
+              invalid: { color: "#9e2146" },
             },
           }}
           className="p-3 border rounded-lg"
         />
       </div>
 
-      {error && (
-        <div className="text-red-500 mb-4 text-center">
-          <p>{error}</p>
-        </div>
-      )}
-
       <button
         type="submit"
         disabled={!stripe || loading}
         className="w-full bg-orange-500 text-white py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
       >
-        {loading ? 'Processing...' : 'Pay Now'}
+        {loading ? "Processing..." : "Pay Now"}
       </button>
-
-      <div className="mt-6 text-center text-sm text-gray-600">
-        <p>Your payment is secure and encrypted.</p>
-        <p>We do not store your card details.</p>
-      </div>
-
-      <div className="mt-4 text-center text-sm text-gray-500">
-        <p>Need help? <a href="/contact" className="text-blue-600 hover:underline">Contact Support</a></p>
-      </div>
     </form>
   );
 };
 
 export default function CheckoutPage() {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      <div className="w-full max-w-2xl bg-white rounded-lg shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center mb-8">Checkout</h1>
-        <Elements stripe={stripePromise}>
-          <CheckoutForm />
-        </Elements>
-      </div>
-    </div>
+    <Elements stripe={stripePromise}>
+      <CheckoutForm />
+    </Elements>
   );
 }
