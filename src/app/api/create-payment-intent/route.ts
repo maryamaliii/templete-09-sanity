@@ -1,14 +1,21 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-  apiVersion: '2024-12-18.acacia',
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
+  apiVersion:'2024-12-18.acacia', // Use a stable API version
 });
 
-export async function POST() {
+export async function POST(req: Request) {
   try {
+    const body = await req.json(); // Parse JSON request body
+    const { amount } = body;
+
+    if (!amount) {
+      return NextResponse.json({ error: 'Amount is required' }, { status: 400 });
+    }
+
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: 100, // Amount in cents (e.g., $10.00)
+      amount, // Ensure amount is coming from request
       currency: 'usd',
     });
 
